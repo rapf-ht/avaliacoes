@@ -15,8 +15,15 @@ def adicionar_produto():
             print("Finalizando a adição de produtos ao carrinho.")
             print("---------------------------------")
             print("Produtos no carrinho:")
-            for produto in carrinho:
-                print(f"{produto}º pedido - Livro {catalogos_produtos.itens[produto]["title"]} -> R$ {catalogos_produtos.itens[produto]["price"]:.2f}")
+            # O 'start=1' faz a contagem começar em 1 em vez de 0
+            for posicao, id_produto in enumerate(carrinho, start=1):
+        
+                # Captar dados usando o ID (id_produto)
+                titulo = catalogos_produtos.itens[id_produto]["title"]
+                preco = catalogos_produtos.itens[id_produto]["price"]
+                
+                # Na hora de imprimir, usamos a 'posicao' para mostrar a ordem
+                print(f"{posicao}º pedido - Livro {titulo} -> R$ {preco:.2f}")
             print(f"Total a pagar: R$ {sum(carrinho_prices):.2f}")
             break
         
